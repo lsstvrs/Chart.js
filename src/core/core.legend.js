@@ -154,6 +154,18 @@ module.exports = function(Chart) {
 			if(me.options.reverse){
 				me.legendItems.reverse();
 			}
+
+			var hide = []
+			helpers.each(me.legendItems, function(item, i){
+				if (item.text === null || item.text === undefined)
+					hide.push(i);
+			})
+
+			var c = 0;
+			helpers.each(hide, function(i){
+				me.legendItems.splice(i - c, 1);
+				c = c+1;
+			})
 		},
 		afterBuildLabels: noop,
 
